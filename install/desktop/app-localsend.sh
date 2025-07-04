@@ -3,7 +3,7 @@ LOCALSEND_VERSION=$(curl -s "https://api.github.com/repos/localsend/localsend/re
 
 ARCHITECTURE=$(dpkg --print-architecture)
 if [ "$ARCHITECTURE" = "arm64" ]; then
-    DEB_FILE="LocalSend-${LOCALSEND_VERSION}-linux-arm64.deb"
+    DEB_FILE="LocalSend-${LOCALSEND_VERSION}-linux-arm-64.deb"
 else
     DEB_FILE="LocalSend-${LOCALSEND_VERSION}-linux-x86-64.deb"
 fi
