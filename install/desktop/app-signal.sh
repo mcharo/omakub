@@ -6,7 +6,7 @@ case $ARCH in
     ;;
   *)
     echo "Unsupported architecture: $ARCH"
-    exit 0 # Skip installation
+    return 0
     ;;
 esac
 
