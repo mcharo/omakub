@@ -4,12 +4,9 @@ case $ARCH in
   x86_64)
     SIGNAL_ARCH="amd64"
     ;;
-  aarch64)
-    SIGNAL_ARCH="arm64"
-    ;;
   *)
     echo "Unsupported architecture: $ARCH"
-    exit 1
+    exit 0 # Skip installation
     ;;
 esac
 
