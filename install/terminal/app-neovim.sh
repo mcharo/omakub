@@ -1,10 +1,26 @@
 cd /tmp
-wget -O nvim.tar.gz "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz"
+
+# Detect architecture and set appropriate download URL
+ARCH=$(uname -m)
+case $ARCH in
+  x86_64)
+    NEOVIM_ARCH="x86_64"
+    ;;
+  aarch64)
+    NEOVIM_ARCH="arm64"
+    ;;
+  *)
+    echo "Unsupported architecture: $ARCH"
+    exit 1
+    ;;
+esac
+
+wget -O nvim.tar.gz "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-${NEOVIM_ARCH}.tar.gz"
 tar -xf nvim.tar.gz
-sudo install nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
-sudo cp -R nvim-linux-x86_64/lib /usr/local/
-sudo cp -R nvim-linux-x86_64/share /usr/local/
-rm -rf nvim-linux-x86_64 nvim.tar.gz
+sudo install nvim-linux-${NEOVIM_ARCH}/bin/nvim /usr/local/bin/nvim
+sudo cp -R nvim-linux-${NEOVIM_ARCH}/lib /usr/local/
+sudo cp -R nvim-linux-${NEOVIM_ARCH}/share /usr/local/
+rm -rf nvim-linux-${NEOVIM_ARCH} nvim.tar.gz
 cd -
 
 # Install luarocks and tree-sitter-cli to resolve lazyvim :checkhealth warnings
